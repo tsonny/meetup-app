@@ -3,7 +3,6 @@ import { createContext, useState } from "react";
 const FavoritesContext = createContext({
   favorites: [],
   totalFavorites: 0,
-  //For autocomplete
   addFavorite: (favoriteMeetup) => {},
   removeFavorite: (meetupId) => {},
   itemIsFavorite: (meetupId) => {},
@@ -17,11 +16,13 @@ export function FavoritesContextProvider(props) {
       return prevUserFavorites.concat(favoriteMeetup);
     });
   }
+
   function removeFavoriteHandler(meetupId) {
     setUserFavorites((prevUserFavorites) => {
       return prevUserFavorites.filter((meetup) => meetup.id !== meetupId);
     });
   }
+
   function itemIsFavoriteHandler(meetupId) {
     return userFavorites.some((meetup) => meetup.id === meetupId);
   }
